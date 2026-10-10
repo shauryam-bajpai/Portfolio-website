@@ -1,0 +1,344 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #08090c;
+  --fg: #fafafa;
+  --fg2: #d4d4d8;
+  --muted: #a1a1aa;
+  --subtle: #71717a;
+  --subtle2: #52525b;
+  --border: #2a2b32;
+  --border2: #1c1e24;
+  --border3: #3f3f46;
+  --card: #0d0f14;
+  --accent: #818cf8;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-geist-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(circle at 15% 18%, rgba(129, 140, 248, 0.045), transparent 28rem),
+    radial-gradient(circle at 85% 55%, rgba(168, 85, 247, 0.035), transparent 32rem);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+section[id],
+footer[id] {
+  scroll-margin-top: 96px;
+}
+
+.page-shell {
+  isolation: isolate;
+}
+
+.hero-title {
+  font-size: clamp(2.55rem, 7.2vw, 4.8rem);
+}
+
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Background grid styling */
+.grid-pattern {
+  background-image: linear-gradient(to right, rgba(63, 63, 70, 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(63, 63, 70, 0.28) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+/* Dot matrix texture overlay */
+.dots {
+  background-image: radial-gradient(var(--border) 1px, transparent 1px);
+  background-size: 14px 14px;
+  -webkit-mask-image: linear-gradient(to bottom left, #000, transparent 75%);
+  mask-image: linear-gradient(to bottom left, #000, transparent 75%);
+  opacity: 0.9;
+}
+
+/* Keyframes */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}
+
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(129, 140, 248, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgba(129, 140, 248, 0);
+  }
+}
+
+@keyframes pingg {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 8px rgba(74, 222, 128, 0);
+  }
+}
+
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes sign {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.2;
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* Utility animation classes */
+.rise {
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.shine {
+  background: linear-gradient(90deg, var(--subtle), var(--fg), var(--subtle));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+.pulse {
+  animation: ping 2s infinite;
+}
+
+.pulseg {
+  animation: pingg 2s infinite;
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Project Card & Hover effects */
+.pcard {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border2);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(129, 140, 248, 0.055), transparent 16rem),
+    var(--card);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  transition:
+    transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1),
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background-color 0.3s ease;
+}
+
+.activity-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.018), transparent 42%),
+    var(--card);
+  box-shadow:
+    0 35px 80px -45px rgba(0, 0, 0, 0.95),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.pcard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(129, 140, 248, 0.52) !important;
+  box-shadow:
+    0 28px 70px -38px rgba(129, 140, 248, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.project-card:focus-within {
+  border-color: rgba(129, 140, 248, 0.52);
+  box-shadow: 0 28px 70px -38px rgba(129, 140, 248, 0.55);
+}
+
+.project-metric {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.025), rgba(28, 30, 36, 0.72));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.025);
+  transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.project-card:hover .project-metric {
+  border-color: rgba(129, 140, 248, 0.2);
+}
+
+.pcard .tl {
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.pcard:hover .tl {
+  opacity: 0.95;
+}
+
+.pcard .arr {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--fg);
+  transition: all 0.3s ease;
+}
+
+.pcard:hover .arr {
+  background: var(--fg);
+  color: var(--bg);
+  border-color: var(--fg);
+  transform: translate(2px, -2px);
+}
+
+.chip {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 12px;
+  padding: 5px 11px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: border-color 0.25s ease, color 0.25s ease;
+}
+
+.chip:hover {
+  border-color: var(--accent) !important;
+  color: var(--fg) !important;
+}
+
+.nl {
+  transition: color 0.25s ease;
+}
+
+.nl:hover {
+  color: var(--fg) !important;
+}
+
+.btn {
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 4px rgba(129, 140, 248, 0.15);
+}
+
+.bead:hover {
+  transform: scale(1.15);
+}
+
+/* Cursive Signature Animation */
+.sig {
+  font-family: var(--font-cursive), "Monsieur La Doulaise", cursive;
+  animation: sign 1.8s 0.9s cubic-bezier(0.55, 0, 0.25, 1) both;
+}
+
+.sigline {
+  animation: sign 0.8s 2.5s ease-out both;
+}
+
+/* Activity Heatmap Grid Styles */
+.c {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+}
+
+.hm {
+  display: grid;
+  grid-template-rows: repeat(7, 13px);
+  grid-auto-flow: column;
+  grid-auto-columns: 13px;
+  gap: 4px;
+}
+
+/* GitHub Heatmap Colors */
+.g0 { background: #151b23; }
+.g1 { background: #0e4429; }
+.g2 { background: #006d32; }
+.g3 { background: #26a641; }
+.g4 { background: #39d353; }
+
+/* LeetCode Heatmap Colors */
+.l0 { background: #151b23; }
+.l1 { background: #4a3410; }
+.l2 { background: #8a5a0c; }
+.l3 { background: #d98a0b; }
+.l4 { background: #ffa116; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  * {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
