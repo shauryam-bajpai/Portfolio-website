@@ -30,7 +30,7 @@ export default function Projects() {
         </div>
         <span className="self-start shrink-0 inline-flex items-center gap-2 font-mono text-xs sm:text-[13px] text-[var(--muted)] bg-[var(--card)] border border-[var(--border)] rounded-full py-1.5 px-3.5">
           <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-          06 projects
+          {String(projectsData.length).padStart(2, "0")} projects
         </span>
       </div>
 
@@ -38,6 +38,7 @@ export default function Projects() {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5">
         {projectsData.map((project) => {
           const isTwoSpan = project.colSpan === 2;
+          const isThreeSpan = project.colSpan === 3;
           const badgeClass = getBadgeStyle(project.category);
 
           return (
@@ -48,7 +49,11 @@ export default function Projects() {
               rel="noopener noreferrer"
               aria-label={`View ${project.title} on GitHub (opens in a new tab)`}
               className={`pcard project-card group min-h-full ${
-                isTwoSpan ? "md:col-span-2" : "md:col-span-1"
+                isThreeSpan
+                  ? "md:col-span-3"
+                  : isTwoSpan
+                    ? "md:col-span-2"
+                    : "md:col-span-1"
               } p-6 sm:p-7 md:p-8 flex flex-col justify-between gap-6 sm:gap-7`}
             >
               {/* Top Accent Line */}
@@ -76,7 +81,7 @@ export default function Projects() {
 
                 <h3
                   className={`m-0 mb-2.5 font-semibold tracking-[-0.03em] leading-[1.12] text-[var(--fg)] group-hover:text-white transition-colors ${
-                    isTwoSpan
+                    isTwoSpan || isThreeSpan
                       ? "text-2xl sm:text-3xl md:text-[32px]"
                       : "text-xl sm:text-2xl md:text-[24px]"
                   }`}
