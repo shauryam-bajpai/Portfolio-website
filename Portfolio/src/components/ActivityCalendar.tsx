@@ -81,7 +81,7 @@ export default function ActivityCalendar() {
                 />
                 <h3 className="m-0 text-xl sm:text-2xl md:text-[26px] font-semibold tracking-[-0.02em] text-[var(--fg)]">
                   {isGithub
-                    ? "132 contributions in the last year"
+                    ? "170+ contributions in the last year"
                     : "400+ algorithmic problems solved"}
                 </h3>
               </div>
