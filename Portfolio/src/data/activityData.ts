@@ -1,5 +1,5 @@
-// Pre-rendered activity grid data matching Main.dc.html
-export const githubActivity: string[] = [
+// Seeded GitHub activity, enriched below with a deterministic year-long pattern.
+const githubActivitySeed: string[] = [
   "g0",
   "g0",
   "g0",
@@ -372,6 +372,48 @@ export const githubActivity: string[] = [
   "g0",
   "g0"
 ];
+
+const activityNoise = (seed: number) => {
+  let value = Math.imul(seed ^ 0x9e3779b9, 0x85ebca6b);
+  value ^= value >>> 13;
+  value = Math.imul(value, 0xc2b2ae35);
+  return ((value ^ (value >>> 16)) >>> 0) / 4_294_967_295;
+};
+
+export const githubActivity: string[] = githubActivitySeed.map(
+  (existingLevel, index) => {
+    const week = Math.floor(index / 7);
+    const day = index % 7;
+    const isWeekday = day > 0 && day < 6;
+    const isHighActivityWeek =
+      (week >= 14 && week <= 17) ||
+      (week >= 31 && week <= 34) ||
+      (week >= 48 && week <= 52);
+    const isMediumActivityWeek = [7, 11, 19, 23, 27, 37, 41, 44].includes(
+      week
+    );
+
+    const activityChance = Math.min(
+      0.78,
+      0.21 +
+        (isWeekday ? 0.07 : 0) +
+        activityNoise(week + 83) * 0.15 +
+        (isHighActivityWeek ? 0.3 : isMediumActivityWeek ? 0.13 : 0) +
+        (existingLevel !== "g0" ? 0.1 : 0)
+    );
+
+    if (activityNoise(index + 1_307) > activityChance) return "g0";
+
+    const intensity = Math.min(
+      1,
+      activityNoise(index + 7_919) + (isHighActivityWeek ? 0.12 : 0)
+    );
+    if (intensity > 0.9) return "g4";
+    if (intensity > 0.68) return "g3";
+    if (intensity > 0.36) return "g2";
+    return "g1";
+  }
+);
 
 export const leetcodeActivity: string[] = [
   "l0",
