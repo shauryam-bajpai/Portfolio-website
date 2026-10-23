@@ -12,7 +12,7 @@ export interface Project {
   metrics: Metric[];
   tags: string[];
   link: string;
-  colSpan: 1 | 2;
+  colSpan: 1 | 2 | 3;
 }
 
 export interface ExperienceItem {
@@ -114,14 +114,22 @@ export const experienceData: ExperienceItem[] = [
     ],
   },
   {
-    period: "JANUARY 2025 - APRIL 2025",
+    period: "DECEMBER 2025 - JANUARY 2026",
     title: "Full Stack Developer Intern",
     company: "Robotronix and Scalable Technologies (RAST)",
     isCurrent: false,
-    skills: ["React", "Node.js", "Express", "REST APIs", "Automated QA"],
+    skills: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "FastAPI",
+      "REST APIs",
+      "Document Ingestion",
+    ],
     bullets: [
-      "Engineered core modules for a web-based virtual materials simulation platform, implementing responsive UI workflows and robust API endpoints.",
-      "Spearheaded comprehensive platform verification and regression testing, validating calculation accuracy across multi-variable stress-strain datasets.",
+      "Designed and developed RAST AeroMind end to end, creating an AI copilot interface for wind-turbine diagnostics with Next.js, TypeScript, and Tailwind CSS.",
+      "Integrated the frontend with FastAPI REST services to present AI-generated insights, defect findings, and maintenance recommendations as clear, actionable workflows.",
+      "Optimized document parsing, chunking, and indexing to reduce ingestion time by 33% across a 100-document benchmark.",
     ],
   },
 ];
@@ -224,6 +232,33 @@ export const projectsData: Project[] = [
     tags: ["Node.js", "Redis", "OpenAI API", "Docker"],
     link: "https://github.com/shauryam-bajpai/Streampulse",
     colSpan: 1,
+  },
+  {
+    title: "FraudShield",
+    category: "FINTECH · MACHINE LEARNING",
+    index: "07 · 2026",
+    description:
+      "An end-to-end transaction risk intelligence platform that scores card activity, surfaces suspicious behavior, and gives analysts a structured workflow for reviewing flagged cases.",
+    points: [
+      "Built a three-tier platform with a Next.js analyst dashboard, an Express/TypeScript gateway backed by PostgreSQL, and a FastAPI inference service",
+      "Engineered time-aware transaction features, compared Logistic Regression with XGBoost, and routed high-risk cases through a human-in-the-loop investigation workflow",
+    ],
+    metrics: [
+      { value: "2", label: "ML MODELS" },
+      { value: "3-TIER", label: "ARCHITECTURE" },
+      { value: "HITL", label: "CASE REVIEW" },
+    ],
+    tags: [
+      "Python",
+      "FastAPI",
+      "XGBoost",
+      "Next.js",
+      "Express",
+      "PostgreSQL",
+      "LangGraph",
+    ],
+    link: "https://github.com/shauryam-bajpai/FraudShield",
+    colSpan: 3,
   },
 ];
 
